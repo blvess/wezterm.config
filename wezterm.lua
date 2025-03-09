@@ -4,8 +4,6 @@ local config = wezterm.config_builder()
 -- local smart_splits = wezterm.plugin.require("https://github.com/mrjones2014/smart-splits.nvim")
 local scheme = wezterm.get_builtin_color_schemes()["tokyonight"]
 
-local w = require("wezterm")
-
 -- if you are *NOT* lazy-loading smart-splits.nvim (recommended)
 local function is_vim(pane)
 	-- this is set by the plugin, and unset on ExitPre in Neovim
@@ -23,7 +21,7 @@ local function split_nav(resize_or_move, key)
 	return {
 		key = key,
 		mods = resize_or_move == "resize" and "ALT" or "LEADER",
-		action = w.action_callback(function(win, pane)
+		action = wezterm.action_callback(function(win, pane)
 			if is_vim(pane) then
 				-- pass the keys through to vim/nvim
 				win:perform_action({
